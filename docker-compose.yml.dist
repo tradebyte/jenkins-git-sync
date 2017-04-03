@@ -1,0 +1,18 @@
+version: '2'
+
+volumes:
+  jenkins_home:
+
+services:
+  jenkins:
+    labels:
+      jenkins: "jenkins-git-sync"
+    build: .
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    environment:
+      JENKINS_CONFIG_BRANCH: # Branch to checkout
+      JENKINS_CONFIG_REPOSITORY: # URL of the git repository
